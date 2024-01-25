@@ -13,9 +13,18 @@ interface ILoginProps {
 }
 
 const loginApi = async (data: ILoginProps) => {
-  const url = AuthConfig.LOGIN();
-  const response = await http.post(url, data);
-  return { ...response.data, isRememberMe: data.isRememberMe };
+  if (data.email === "admin@gmail.com" && data.password === "admin") {
+    return {
+      ...data,
+      isRememberMe: data.isRememberMe,
+      message: "successfully loggedin.",
+    };
+  } else {
+    return new Error("hello");
+  }
+  // const url = AuthConfig.LOGIN();
+  // const response = await http.post(url, data);
+  // return { ...response.data, isRememberMe: data.isRememberMe };
 };
 
 const useLoginMutation = () => {
@@ -29,12 +38,12 @@ const useLoginMutation = () => {
       toast.success(data?.message || "Login successful");
       dispatch(
         setLogin({
-          token: data?.token,
-          userData: data?.user,
-          isRememberMe: data.isRememberMe,
+          token: "iueirjoeljfldhfh39r3uo3",
+          userData: data,
+          isRememberMe: true,
         })
       );
-      navigate("/admin/dashboard");
+      navigate("/dashboard");
       navigate(0);
       // if (data.data.admin.roles[0]?.role === "super_admin") {
       //   navigate("/super-admin");

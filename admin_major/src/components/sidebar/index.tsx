@@ -135,39 +135,6 @@ function Sidebar({
           </div>
         </div>
         <div className="p-5">
-          {customerCareLink?.map((item) => (
-            <Link
-              to={item.path}
-              key={item.id}
-              className={cn(
-                "mt-3 p-2 body-default-semibold flex gap-2 group text-core-secondary transition-all hover:bg-core-primary-light",
-                {
-                  "bg-transparent": item.path === pathname,
-                }
-              )}
-            >
-              <item.icon
-                className={cn("shrink-0 group-hover:text-core-indigo", {
-                  "text-core-indigo": item.path === pathname,
-                })}
-                height={20}
-                width={20}
-              />
-              <p
-                className={cn(
-                  "group-hover:text-core-indigo",
-                  {
-                    "text-core-indigo": item.path === pathname,
-                  },
-                  {
-                    hidden: isOpen,
-                  }
-                )}
-              >
-                {item.name}
-              </p>
-            </Link>
-          ))}
           <button
             onClick={handleLogout}
             className="group text-core-red flex items-center mt-3 p-2 justify-between  transition-all mb-10 rounded-lg hover:bg-core-primary-light"

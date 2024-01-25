@@ -2,38 +2,30 @@ import NavBar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { RootState } from "@/redux/store";
 import cn from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, Outlet } from "react-router-dom";
 
-function AppLayout({ children }: { children: React.ReactNode }) {
+function AppLayout() {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
   const isToggle = () => setIsOpen(!isOpen);
 
-  const { pathname } = useLocation();
-
-  const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
-
+  console.log(pathname);
+  // const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
+  const loginStatus = true;
   if (!loginStatus) {
     // console.log("false login");
     return <Navigate to="/login" />;
   }
 
-  if (loginStatus && pathname === "/login") {
+  if (pathname === "/login" && loginStatus) {
     // console.log("false login");
-    return <Navigate to="/admin/dashboard" />;
+    return <Navigate to="/dashboard" />;
   }
+  console.log("applayout");
   return (
     <>
-      {/* <div className="flex gap-[6px] lg:gap-[32px] bg-neutral-50">
-        <Sidebar className="max-w-[260px] shadow-md w-full flex-none sticky top-0 bg-shade-light" />
-
-        <main className="grow p-12 rounded-lg overflow-auto bg-neutral-50">
-          {children}
-        </main>
-      </div> */}
-      {/* <NavBar /> */}
-
       <div className="flex">
         <Sidebar isOpen={isOpen} isToggle={isToggle} />
         <div
@@ -44,7 +36,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
         >
           <NavBar />
           <div className="w-full  overflow-x-none transition translation-all">
-            {children}
+            <Outlet />
           </div>
         </div>
       </div>

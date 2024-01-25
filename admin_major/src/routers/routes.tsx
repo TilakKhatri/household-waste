@@ -2,29 +2,35 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import Dashboard from "@/pages/admin/dashboard/dashboard";
 import Loader from "@/components/ui/Loader";
-import { useSelector } from "react-redux";
+
 import Login from "@/pages/auth/Login";
 import PageNotFound from "@/pages/404";
-const { loginStatus } = useSelector((state: any) => state.user);
+import AppLayout from "@/layout/appLayout";
+import Home from "@/pages/home";
+const isLoggedin = true;
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: loginStatus ? <Dashboard /> : <Navigate to={"/login"} />,
+    element: <AppLayout />,
     loader: Loader,
     children: [
       {
-        path: "/",
+        path: "/dashboard",
         element: <Dashboard />,
       },
       {
-        path: "/users",
+        path: "/user",
         element: <Dashboard />,
       },
       {
-        path: "/pickers",
+        path: "/picker",
         element: <Dashboard />,
       },
     ],
+  },
+  {
+    path: "/",
+    element: <Home />,
   },
   {
     path: "/login",

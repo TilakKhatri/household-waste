@@ -8,8 +8,13 @@ import {
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: IUserState = {
-  user: getUserData() || {},
-  loginStatus: isUserLogin() || true,
+  user: getUserData() || {
+    fullname: "Tilak",
+    email: "admin@gmail.com",
+    role: "ADMIN",
+    isAdmin: true,
+  },
+  loginStatus: isUserLogin() || false,
 };
 
 export const userSlice = createSlice({
