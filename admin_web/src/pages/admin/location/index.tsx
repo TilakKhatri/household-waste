@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import L from "leaflet";
 import AddUserModal from "./components/Modal";
@@ -24,7 +24,7 @@ function Centers() {
     <>
       <div className="my-12 px-4 md:px-8 xl:px-12 py-4">
         <div className="flex justify-between items-center">
-          <h1>Collection center Location</h1>
+          <h1 className="text-xl">Collection center Location</h1>
           <button
             onClick={() => setIsModalOpen(true)}
             className="w-fit px-4 primary-btn"
@@ -37,12 +37,6 @@ function Centers() {
       <AddUserModal isOpen={isDrawerOpen} toggleModal={toggleModal} />
       <div className="md:px-8 my-12">
         <MapLayout>
-          <Circle
-            key={"1"}
-            center={[28.668754, 84.104185]}
-            pathOptions={{ color: "blue" }}
-            radius={20000}
-          />
           {/* <CircleMarker
             center={[28.668754, 83.104185]}
             pathOptions={{ color: "red" }}
@@ -52,11 +46,19 @@ function Centers() {
           </CircleMarker> */}
           {CenterLocations &&
             CenterLocations.map((center: any) => (
-              <Marker
-                key={center._id}
-                position={[center.lat, center.lng]}
-                icon={customIcon}
-              />
+              <>
+                {/* <Circle
+                  key={center._id}
+                  center={[center.lat, center.lng]}
+                  pathOptions={{ color: "blue" }}
+                  radius={20000}
+                /> */}
+                <Marker
+                  key={center._id}
+                  position={[center.lat, center.lng]}
+                  icon={customIcon}
+                />
+              </>
             ))}
 
           {/* <CircleMarker
