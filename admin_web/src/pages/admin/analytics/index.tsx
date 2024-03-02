@@ -550,14 +550,14 @@ export default function Map() {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    const points = addressPoints
-      ? addressPoints.map((item) => {
-          // return [
-          //   item.centroid.lat,
-          //   item.centroid.lng,
-          //   item.density_ratio * 100,
-          // ];
-          return [item[0], item[1]];
+    const points = clusterData
+      ? clusterData.map((item) => {
+          return [
+            item.centroid.lat,
+            item.centroid.lng,
+            item.density_ratio * 100,
+          ];
+          // return [item[0], item[1]];
         })
       : [];
     console.log("points", points);
