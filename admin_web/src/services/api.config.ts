@@ -15,3 +15,7 @@ export const LocationConfig = {
 export const ClusterConfig = {
   GET_ALL: () => `${import.meta.env.VITE_LOCAL_URL}/pickups/cluster`,
 };
+
+export const PickersConfig = {
+  GET_ALL: () => `${import.meta.env.VITE_LOCAL_URL}/sys/admin/pickers`,
+};

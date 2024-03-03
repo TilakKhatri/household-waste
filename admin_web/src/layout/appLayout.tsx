@@ -4,6 +4,7 @@ import ErrorBoundary from "@/components/ui/error-boundary";
 
 import cn from "classnames";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Navigate, useLocation, Outlet } from "react-router-dom";
 
@@ -13,15 +14,15 @@ function AppLayout() {
   const isToggle = () => setIsOpen(!isOpen);
 
   console.log(pathname);
-  // const loginStatus = useSelector<RootState>((state) => state.user.loginStatus);
-  const loginStatus = true;
+  const loginStatus = useSelector((state: any) => state.user.loginStatus);
+  // const loginStatus = true;
   if (!loginStatus) {
-    // console.log("false login");
+    console.log("false login");
     return <Navigate to="/login" />;
   }
 
   if (pathname === "/login" && loginStatus) {
-    // console.log("false login");
+    console.log("false login");
     return <Navigate to="/dashboard" />;
   }
   console.log("applayout");

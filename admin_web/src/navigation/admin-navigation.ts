@@ -32,12 +32,6 @@ export const navigationLinks: INavigation[] = [
     icon: BuildingStorefrontIcon,
   },
   {
-    id: "pickers",
-    name: "Picker management",
-    path: "/pickers",
-    icon: UsersIcon,
-  },
-  {
     id: "analytics",
     name: "Analytics",
     path: "/analytics",

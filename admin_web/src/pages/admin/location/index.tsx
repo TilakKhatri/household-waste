@@ -10,15 +10,16 @@ import useGetLocationQuery from "@/services/location/use-get-location-query";
 
 const customIcon = new L.Icon({
   iconUrl: logo,
-  iconSize: new L.Point(20, 27),
+  iconSize: new L.Point(30, 40),
 });
 
 function Centers() {
   const [isDrawerOpen, setIsModalOpen] = useState(false);
-  const { data: CenterLocations } = useGetLocationQuery();
+  const { data: CenterLocations, isLoading } = useGetLocationQuery();
   const toggleModal = () => {
     setIsModalOpen((prevState) => !prevState);
   };
+  console.log("locations", CenterLocations);
 
   return (
     <>
@@ -36,7 +37,7 @@ function Centers() {
 
       <AddUserModal isOpen={isDrawerOpen} toggleModal={toggleModal} />
       <div className="md:px-8 my-12">
-        <MapLayout>
+        <MapLayout key={"1"}>
           {/* <CircleMarker
             center={[28.668754, 83.104185]}
             pathOptions={{ color: "red" }}
@@ -44,7 +45,7 @@ function Centers() {
           >
             <Popup>Collector Name</Popup>
           </CircleMarker> */}
-          {CenterLocations &&
+          {!isLoading && CenterLocations ? (
             CenterLocations.map((center: any) => (
               <>
                 {/* <Circle
@@ -59,7 +60,10 @@ function Centers() {
                   icon={customIcon}
                 />
               </>
-            ))}
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
 
           {/* <CircleMarker
             center={[28.668754, 82.104185]}

@@ -23,9 +23,27 @@ const createClusterCustomIcon = function (cluster: MarkerCluster) {
 const customIcon = new L.Icon({
   iconUrl: logo,
   iconSize: new L.Point(40, 47),
+  color: "blue",
 });
 
 function Dashboard() {
+  const randomColor = [
+    "green",
+    "red",
+    "blue",
+    "orange",
+    "teal",
+    "purple",
+    "magenta",
+    "yellow",
+    "pink",
+    "black",
+    "violet",
+  ];
+  const colorFun = () => {
+    let index = Math.floor(Math.random() * randomColor.length);
+    return randomColor[index];
+  };
   const { data: clusterData } = useGetClusterLocation();
   // const clusterData = [
   //   {
@@ -579,18 +597,14 @@ function Dashboard() {
 
       <div className="my-12 px-4 md:px-8 xl:px-12 py-4">
         <MapLayout>
-          <MarkerComponent
-            position={[28.668754, 83.104185]}
-            icon={customIcon}
-          />
           {clusterData &&
             clusterData.map((cluster: any, index: number) => (
               <>
                 <Circle
                   key={index}
                   center={[cluster.centroid.lat, cluster.centroid.lng]}
-                  pathOptions={{ color: "blue" }}
-                  radius={cluster.max_radius * 1000}
+                  pathOptions={{ color: colorFun() }}
+                  radius={(cluster.max_radius + 0.00001) * 1000}
                 />
 
                 {cluster.points && (

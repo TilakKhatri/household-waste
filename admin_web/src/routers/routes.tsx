@@ -8,9 +8,9 @@ import PageNotFound from "@/pages/404";
 import AppLayout from "@/layout/appLayout";
 import Home from "@/pages/home";
 import Location from "@/pages/admin/location";
-import Picker from "@/pages/admin/picker";
+// import Picker from "@/pages/admin/picker";
 import Analytic from "@/pages/admin/analytics";
-const isLoggedin = true;
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -25,10 +25,10 @@ export const router = createBrowserRouter([
         path: "/centers",
         element: <Location />,
       },
-      {
-        path: "/pickers",
-        element: <Picker />,
-      },
+      // {
+      //   path: "/pickers",
+      //   element: <Location />,
+      // },
       {
         path: "/analytics",
         element: <Analytic />,

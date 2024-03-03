@@ -7,7 +7,7 @@ export default function ClusterComponent({ points, icon }: any) {
     pointList &&
     pointList.map((point: any, index: number) => (
       <Marker key={index} position={[point.lat, point.lng]} icon={icon}>
-        <Popup>Hello baby</Popup>
+        <Popup>Pickup Request {index}</Popup>
       </Marker>
     ))
   );

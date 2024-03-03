@@ -20,7 +20,7 @@ const loginApi = async (data: ILoginProps) => {
       message: "successfully loggedin.",
     };
   } else {
-    return new Error("hello");
+    return new Error("error");
   }
   // const url = AuthConfig.LOGIN();
   // const response = await http.post(url, data);
@@ -44,7 +44,7 @@ const useLoginMutation = () => {
         })
       );
       navigate("/dashboard");
-      navigate(0);
+      // navigate(0);
       // if (data.data.admin.roles[0]?.role === "super_admin") {
       //   navigate("/super-admin");
       //   navigate(0);

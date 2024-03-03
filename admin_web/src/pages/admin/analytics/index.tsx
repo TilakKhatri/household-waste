@@ -543,7 +543,7 @@ export default function Map() {
     },
   ];
   useEffect(() => {
-    var map = L.map("map").setView([28.25, 83.95], 20);
+    var map = L.map("map").setView([28.242487199867135, 83.98835957718906], 12);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
